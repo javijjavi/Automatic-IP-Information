@@ -92,25 +92,39 @@ def funcion_sacarINF(_id, web, brower, dominio):
     dominio = dominio
     time.sleep(2)
     brower.close()
-    if titulos [4] == "Organization":
-        ip = dominio
-        ASN = datos[2]
-        ISP = datos[3]
-        organizacion = datos[4]
-        pais = datos[7]
-        estado = datos[8]
-        ciudad = datos[9]
-        funcion_introducirMongoDB(_id, ip, ASN, ISP, organizacion, pais, estado, ciudad)
-    else:
-        ip = dominio
-        ASN = datos[2]
-        ISP = datos[3]
-        pais = datos[4]
-        estado = datos[5]
-        ciudad = datos[6]
-        organizacion = "N/A"
-        funcion_introducirMongoDB(_id, ip, ASN, ISP, organizacion, pais, estado, ciudad)
-    
+    posicion = 0
+    for titulo in titulos:
+        
+        if titulo == "ASN":
+            ASN = datos[posicion]
+            posicion = posicion + 1
+        elif titulo == "ISP":
+            ISP = datos[posicion]
+            posicion = posicion + 1
+
+        elif titulo == "Organization":
+            organizacion = datos[posicion]
+            posicion = posicion + 1
+
+        elif titulo == "Country":
+            pais = datos[posicion]
+            posicion = posicion + 1
+
+        elif titulo == "State / Region":
+            estado = datos[posicion]
+            posicion = posicion + 1
+
+        elif titulo == "City":
+            ciudad = datos[posicion]
+            posicion = posicion + 1
+        else:
+            posicion = posicion + 1
+            continue
+
+    funcion_introducirMongoDB(_id, ip, ASN, ISP, organizacion, pais, estado, ciudad)
+
+
+
     funcion_memoryMagnement(brower)
 
 def funcion_introducirMongoDB(_id, ip, ASN, ISP, organizacion, pais, estado, ciudad):
