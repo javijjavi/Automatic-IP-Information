@@ -72,7 +72,7 @@ def funcion_analizarURL(dominios, _id):
         print("El tiempo procesado para el proceso "+str(_id)+" es de "+str(tiempo_procesado)+" segundos.")
         del elem
         del web
-    print("Memoria usada en MB: "+memory_usage_psutil())
+    print("Memoria usada en MB: "+str(memory_usage_psutil()))
 
 # En la funcion "funcion_sacarINF" extraemos la informacion que queremos de las diferente IP analizadas.
 
@@ -94,7 +94,8 @@ def funcion_sacarINF(_id, web, brower, dominio):
     brower.close()
     posicion = 0
     for titulo in titulos:
-        
+
+        ip = dominio
         if titulo == "ASN":
             ASN = datos[posicion]
             posicion = posicion + 1
@@ -121,10 +122,12 @@ def funcion_sacarINF(_id, web, brower, dominio):
             posicion = posicion + 1
             continue
 
+    if 'organizacion' in locals():
+        organizacion = organizacion
+    else:
+        organizacion = "N/A"
+
     funcion_introducirMongoDB(_id, ip, ASN, ISP, organizacion, pais, estado, ciudad)
-
-
-
     funcion_memoryMagnement(brower)
 
 def funcion_introducirMongoDB(_id, ip, ASN, ISP, organizacion, pais, estado, ciudad):
