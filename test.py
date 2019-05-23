@@ -34,9 +34,16 @@ except:
     print("Falta la libreria de mongodb en su python, pip install pymongo")
 
 # Conexion con la base de datos MongoDB, creacion de database y de column.
+'''
+docker run -d --name mongodb -p 55059:27017 mongo
+docker exec -it mongodb bash
+mongo
+'''
+
+
 
 try:
-    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    myclient = pymongo.MongoClient("mongodb://192.168.10.170:55059")
     mydb = myclient["db_ip"]
     mycol = mydb["ip"]
     mycol.drop()
@@ -131,7 +138,7 @@ def funcion_sacarINF(_id, web, brower, dominio):
     funcion_memoryMagnement(brower)
 
 def funcion_introducirMongoDB(_id, ip, ASN, ISP, organizacion, pais, estado, ciudad):
-    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    myclient = pymongo.MongoClient("mongodb://192.168.10.170:55059")
     mydb = myclient["db_ip"]
     mycol = mydb["ip"]   
     mydates = {
