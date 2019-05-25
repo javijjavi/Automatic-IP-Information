@@ -32,8 +32,7 @@ class seleniumDATA:
         web = brower.current_url
         sacar_datos_IP(web, brower)
         return web
-        
-    #_id = _id + 1
+
     def sacar_datos_IP(self, web, brower):
         brower.get(web)
         tabla_datos = brower.find_elements_by_xpath("//table[@class='table table-norowsep']//td")
