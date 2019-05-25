@@ -10,8 +10,9 @@ try:
     from selenium.webdriver.firefox.options import Options
 except:
     print("Falta la libreria selenium en su python, pip install selenium")
+
 class seleniumDATA:
-    
+
     def __init__(self, ip, ASN, ISP, organizacion, pais, estado, ciudad):
         self.ip = ip
         self.ASN = ASN
@@ -20,7 +21,7 @@ class seleniumDATA:
         self.pais = pais
         self.estado = estado
         self.ciudad = ciudad
-        
+
     def buscar_datos_IP(self):
         options = Options()
         options.headless = True
@@ -104,4 +105,3 @@ class seleniumDATA:
             "Ciudad": self.ciudad  
         }
         insertar = mycol.insert_one(mydates)
-
