@@ -30,6 +30,7 @@ class seleniumDATA:
         elem = brower.find_element_by_id("search_input").send_keys(self.ip)
         hacer_click = brower.find_element_by_css_selector("button.btn.btn-outline-secondary").click()        
         web = brower.current_url
+        sacar_datos_IP(web, brower)
         return web
         
     #_id = _id + 1
@@ -81,9 +82,9 @@ class seleniumDATA:
         else:
             self.organizacion = "N/A"
 
-        brower.close()
-        
-    
+        brower.close()    
+    introducir_datos_BD()
+
     def introducir_datos_BD(self):
         try:
             import pymongo
