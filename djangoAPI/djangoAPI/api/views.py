@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, User
 from rest_framework import viewsets
-from djangoAPI.djangoAPI.api.serializers import IPSSerializer, IPSerializer
+#from djangoAPI.djangoAPI.api.serializers import IPSSerializer, IPSerializer
 @api_view(['GET','POST'])
 class IPViewSet(viewsets.ModelViewSet):
     """
